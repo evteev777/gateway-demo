@@ -10,36 +10,19 @@
     </parent>
 
     <groupId>ru.digitalleague.gateway-demo</groupId>
-    <artifactId>writer-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>gateway-service</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-    <name>Writer Service</name>
-    <description>Writer Service Project</description>
+    <name>Spring Cloud Gateway Service</name>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: eureka-service
+
+server:
+  port: 8761
+
+eureka:
+  instance:
+#    lease-expiration-duration-in-seconds: 90
+    status-page-url: http://localhost:${SERVICE_NUM}${server.port}/actuator/info # абсолютный путь (кастомный полный путь снаружи контейнера - для ссылок в Web-UI Eureka)
+  client:
+    service-url:
+      defaultZone: http://eureka-service-1:8761/eureka/,http://eureka-service-2:8761/eureka/,http://eureka-service-3:8761/eureka/
+#  server:
+#    renewal-threshold-update-interval-ms: 60000
+#    renewal-percent-threshold: 0.5
+#    wait-time-in-ms-when-sync-empty: 0
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15thread] %40.40logger : %msg%n"

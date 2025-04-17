@@ -7,9 +7,20 @@ spring:
   application:
     name: reader-service
 
+eureka:
+  instance:
+#    lease-renewal-interval-in-seconds: 10   # heartbeats: 6 раз в минуту вместо стандартных 2 раз
+    status-page-url: http://localhost:${SERVICE_NUM}${server.port}${server.servlet.context-path}/actuator/info # # параметр без ...-path - абсолютный путь (кастомный полный путь снаружи контейнера - для ссылок в Web-UI Eureka)
+  client:
+    service-url:
+      defaultZone: http://eureka-service-1:8761/eureka/,http://eureka-service-2:8761/eureka/,http://eureka-service-3:8761/eureka/
+
 client:
   logger-service:
-    url: http://nginx:80/logger/internal/v1
+    name: logger-service
+    path:
+      internal:
+        v1: /logger/internal/v1
 
 management:
   endpoints:

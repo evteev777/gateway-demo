@@ -4,7 +4,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(name = "logClient", url = "${client.logger-service.url}")
+@FeignClient(name = "${client.logger-service.name}", path = "${client.logger-service.path.internal.v1}")
 public interface LoggerServiceClient {
 
     @PostMapping("/log-hostname")

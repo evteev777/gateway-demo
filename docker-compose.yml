@@ -1,5 +1,18 @@
 # extension fields (не сервисы)
 
+x-eureka-common: &eureka-common
+  build:
+    context: ./eureka-service
+    dockerfile: Dockerfile
+  networks:
+    - default
+  healthcheck:
+    test: [ "CMD", "curl", "-f", "http://localhost:8761/actuator/health" ]
+    interval: 10s
+    timeout: 5s
+    retries: 6
+    start_period: 120s
+
 x-logger-common: &logger-common
   build:
     context: ./logger-service
@@ -12,6 +25,13 @@ x-logger-common: &logger-common
     timeout: 5s
     retries: 6
     start_period: 120s
+  depends_on:
+    eureka-service-1:
+      condition: service_healthy
+    eureka-service-2:
+      condition: service_healthy
+    eureka-service-3:
+      condition: service_healthy
 
 x-reader-common: &reader-common
   build:
@@ -26,6 +46,12 @@ x-reader-common: &reader-common
     retries: 6
     start_period: 120s
   depends_on:
+    eureka-service-1:
+      condition: service_healthy
+    eureka-service-2:
+      condition: service_healthy
+    eureka-service-3:
+      condition: service_healthy
     logger-service-1:
       condition: service_healthy
     logger-service-2:
@@ -46,6 +72,12 @@ x-writer-common: &writer-common
     retries: 6
     start_period: 120s
   depends_on:
+    eureka-service-1:
+      condition: service_healthy
+    eureka-service-2:
+      condition: service_healthy
+    eureka-service-3:
+      condition: service_healthy
     logger-service-1:
       condition: service_healthy
     logger-service-2:
@@ -53,8 +85,67 @@ x-writer-common: &writer-common
     logger-service-3:
       condition: service_healthy
 
+x-gateway-common: &gateway-common
+  build:
+    context: ./gateway-service
+    dockerfile: Dockerfile
+  networks:
+    - default
+  healthcheck:
+    test: [ "CMD", "curl", "-f", "http://localhost:8090/actuator/health" ]
+    interval: 10s
+    timeout: 5s
+    retries: 6
+    start_period: 120s
+  depends_on:
+    eureka-service-1:
+      condition: service_healthy
+    eureka-service-2:
+      condition: service_healthy
+    eureka-service-3:
+      condition: service_healthy
+    logger-service-1:
+      condition: service_healthy
+    logger-service-2:
+      condition: service_healthy
+    logger-service-3:
+      condition: service_healthy
+    reader-service-1:
+      condition: service_healthy
+    reader-service-2:
+      condition: service_healthy
+    reader-service-3:
+      condition: service_healthy
+    writer-service-1:
+      condition: service_healthy
+    writer-service-2:
+      condition: service_healthy
+    writer-service-3:
+      condition: service_healthy
+
 # Сервисы
 services:
+
+  eureka-service-1:
+    <<: *eureka-common
+    environment:
+      - SERVICE_NUM=1
+    ports:
+      - "18761:8761"
+
+  eureka-service-2:
+    <<: *eureka-common
+    environment:
+      - SERVICE_NUM=2
+    ports:
+      - "28761:8761"
+
+  eureka-service-3:
+    <<: *eureka-common
+    environment:
+      - SERVICE_NUM=3
+    ports:
+      - "38761:8761"
 
   logger-service-1:
     <<: *logger-common
@@ -119,6 +210,27 @@ services:
     ports:
       - "38280:8280"
 
+  gateway-service-1:
+    <<: *gateway-common
+    environment:
+      - SERVICE_NUM=1
+    ports:
+      - "18090:8090"
+
+  gateway-service-2:
+    <<: *gateway-common
+    environment:
+      - SERVICE_NUM=2
+    ports:
+      - "28090:8090"
+
+  gateway-service-3:
+    <<: *gateway-common
+    environment:
+      - SERVICE_NUM=3
+    ports:
+      - "38090:8090"
+
   nginx:
     image: nginx:latest
     ports:
@@ -129,23 +241,11 @@ services:
       - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf:ro
       - ./nginx/html/index.html:/usr/share/nginx/html/index.html:ro
     depends_on:
-      logger-service-1:
+      gateway-service-1:
         condition: service_healthy
-      logger-service-2:
+      gateway-service-2:
         condition: service_healthy
-      logger-service-3:
-        condition: service_healthy
-      reader-service-1:
-        condition: service_healthy
-      reader-service-2:
-        condition: service_healthy
-      reader-service-3:
-        condition: service_healthy
-      writer-service-1:
-        condition: service_healthy
-      writer-service-2:
-        condition: service_healthy
-      writer-service-3:
+      gateway-service-3:
         condition: service_healthy
 
 networks:

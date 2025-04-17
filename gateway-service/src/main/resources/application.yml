@@ -1,16 +1,22 @@
 server:
-  port: 8080
-  servlet:
-    context-path: /logger
+  port: 8090
 
 spring:
   application:
-    name: logger-service
+    name: gateway-service
+  cloud:
+    discovery:
+      enabled: true
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lower-case-service-id: true
 
 eureka:
   instance:
 #    lease-renewal-interval-in-seconds: 10   # heartbeats: 6 раз в минуту вместо стандартных 2 раз
-    status-page-url: http://localhost:${SERVICE_NUM}${server.port}${server.servlet.context-path}/actuator/info # # параметр без ...-path - абсолютный путь (кастомный полный путь снаружи контейнера - для ссылок в Web-UI Eureka)
+    status-page-url: http://localhost:${SERVICE_NUM}${server.port}/actuator/info # # параметр без ...-path - абсолютный путь (кастомный полный путь снаружи контейнера - для ссылок в Web-UI Eureka)
   client:
     service-url:
       defaultZone: http://eureka-service-1:8761/eureka/,http://eureka-service-2:8761/eureka/,http://eureka-service-3:8761/eureka/
@@ -24,10 +30,5 @@ management:
           - health
 
 logging:
-  level:
-    root: INFO
-    ru.digitalleague.gatewaydemo: DEBUG
-    org.apache.catalina.core: WARN
-    org.springframework.web.servlet: WARN
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15thread] %40.40logger : %msg%n"

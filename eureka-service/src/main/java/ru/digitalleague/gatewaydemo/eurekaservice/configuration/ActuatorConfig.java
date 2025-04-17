@@ -1,4 +1,4 @@
-package ru.digitalleague.gatewaydemo.loggerservice.configuration;
+package ru.digitalleague.gatewaydemo.eurekaservice.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.actuate.info.InfoContributor;
@@ -12,7 +12,7 @@ public class ActuatorConfig {
 
     public static final String UNKNOWN = "unknown";
 
-    @Value("${spring.application.name:logger-service}")
+    @Value("${spring.application.name:eureka-service}")
     private String applicationName;
 
     @Bean
