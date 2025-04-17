@@ -1,0 +1,28 @@
+services:
+
+  # LOGGER SERVICE
+
+  logger-service:
+    build:
+      context: ./logger-service
+      dockerfile: Dockerfile
+    ports:
+      - "28080:8080"
+
+  # READER SERVICE
+
+  reader-service:
+    build:
+      context: ./reader-service
+      dockerfile: Dockerfile
+    ports:
+      - "28180:8180"
+
+  # WRITER SERVICE
+
+  writer-service:
+    build:
+      context: ./writer-service
+      dockerfile: Dockerfile
+    ports:
+      - "28280:8280"
