@@ -1,0 +1,35 @@
+server:
+  port: 8180
+  servlet:
+    context-path: /reader
+
+spring:
+  application:
+    name: reader-service
+
+client:
+  logger-service:
+    url: http://localhost:8080/logger/internal/v1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          - info
+          - health
+
+logging:
+  level:
+    root: INFO
+    ru.evteev.gatewaydemo: DEBUG
+    org.apache.catalina.core: WARN
+    org.springframework.web.servlet: WARN
+  pattern:
+    console: >-
+      %d{yyyy-MM-dd HH:mm:ss.SSS}  
+      %-5level  
+      ---  
+      [%15.15thread]  
+      %40.40logger  
+      : %msg%n
