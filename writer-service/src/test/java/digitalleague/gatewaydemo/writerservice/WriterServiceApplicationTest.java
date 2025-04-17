@@ -1,10 +1,10 @@
-package ru.digitalleague.gatewaydemo.logservice;
+package digitalleague.gatewaydemo.writerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class LogServiceApplicationTest {
+class WriterServiceApplicationTest {
 
     @Test
     void contextLoads() {

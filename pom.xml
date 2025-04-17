@@ -12,6 +12,7 @@
 
     <modules>
         <module>logger-service</module>
+        <module>writer-service</module>
     </modules>
 
     <groupId>ru.digitalleague</groupId>

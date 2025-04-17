@@ -10,16 +10,21 @@
     </parent>
 
     <groupId>ru.digitalleague.gateway-demo</groupId>
-    <artifactId>logger-service</artifactId>
+    <artifactId>writer-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <name>Logger Service</name>
-    <description>Logger Service Project</description>
+    <name>Writer Service</name>
+    <description>Writer Service Project</description>
 
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>4.2.1</version>
         </dependency>
 
         <dependency>
