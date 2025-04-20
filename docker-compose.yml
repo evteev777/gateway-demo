@@ -130,22 +130,16 @@ services:
     <<: *eureka-common
     environment:
       - SERVICE_NUM=1
-    ports:
-      - "18761:8761"
 
   eureka-service-2:
     <<: *eureka-common
     environment:
       - SERVICE_NUM=2
-    ports:
-      - "28761:8761"
 
   eureka-service-3:
     <<: *eureka-common
     environment:
       - SERVICE_NUM=3
-    ports:
-      - "38761:8761"
 
   logger-service-1:
     <<: *logger-common
