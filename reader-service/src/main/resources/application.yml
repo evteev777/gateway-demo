@@ -9,7 +9,7 @@ spring:
 
 client:
   logger-service:
-    url: http://gateway-nginx:80/logger/internal/v1
+    url: http://nginx:80/logger/internal/v1
 
 management:
   endpoints:
