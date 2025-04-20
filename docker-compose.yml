@@ -151,64 +151,46 @@ services:
     <<: *logger-common
     environment:
       - SERVICE_NUM=1
-    ports:
-      - "18080:8080"
 
   logger-service-2:
     <<: *logger-common
     environment:
       - SERVICE_NUM=2
-    ports:
-      - "28080:8080"
 
   logger-service-3:
     <<: *logger-common
     environment:
       - SERVICE_NUM=3
-    ports:
-      - "38080:8080"
 
   reader-service-1:
     <<: *reader-common
     environment:
       - SERVICE_NUM=1
-    ports:
-      - "18180:8180"
 
   reader-service-2:
     <<: *reader-common
     environment:
       - SERVICE_NUM=2
-    ports:
-      - "28180:8180"
 
   reader-service-3:
     <<: *reader-common
     environment:
       - SERVICE_NUM=3
-    ports:
-      - "38180:8180"
 
   writer-service-1:
     <<: *writer-common
     environment:
       - SERVICE_NUM=1
-    ports:
-      - "18280:8280"
 
   writer-service-2:
     <<: *writer-common
     environment:
       - SERVICE_NUM=2
-    ports:
-      - "28280:8280"
 
   writer-service-3:
     <<: *writer-common
     environment:
       - SERVICE_NUM=3
-    ports:
-      - "38280:8280"
 
   gateway-service-1:
     <<: *gateway-common
