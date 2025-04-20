@@ -22,14 +22,8 @@ management:
 logging:
   level:
     root: INFO
-    ru.evteev.gatewaydemo: DEBUG
+    ru.digitalleague.gatewaydemo: DEBUG
     org.apache.catalina.core: WARN
     org.springframework.web.servlet: WARN
   pattern:
-    console: >-
-      %d{yyyy-MM-dd HH:mm:ss.SSS}  
-      %-5level  
-      ---  
-      [%15.15thread]  
-      %40.40logger  
-      : %msg%n
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level --- [%15.15thread] %40.40logger : %msg%n"
