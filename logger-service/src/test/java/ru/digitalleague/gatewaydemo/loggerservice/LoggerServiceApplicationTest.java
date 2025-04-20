@@ -1,4 +1,4 @@
-package ru.digitalleague.gatewaydemo.logservice;
+package ru.digitalleague.gatewaydemo.loggerservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

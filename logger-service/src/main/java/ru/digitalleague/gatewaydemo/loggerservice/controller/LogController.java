@@ -1,4 +1,4 @@
-package ru.digitalleague.gatewaydemo.logservice.controller;
+package ru.digitalleague.gatewaydemo.loggerservice.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;

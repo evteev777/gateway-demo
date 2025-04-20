@@ -1,4 +1,4 @@
-package ru.digitalleague.gatewaydemo.logservice.configuration;
+package ru.digitalleague.gatewaydemo.loggerservice.configuration;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.actuate.info.InfoContributor;
